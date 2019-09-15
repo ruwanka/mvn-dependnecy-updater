@@ -3,12 +3,12 @@ package co.simpleq.mvn.dependency.updater;
 import com.intellij.util.xml.DomFileElement;
 import com.intellij.util.xml.highlighting.DomElementAnnotationHolder;
 import com.intellij.util.xml.highlighting.DomElementsInspection;
-import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.dom.DependencyConflictId;
 import org.jetbrains.idea.maven.dom.generate.GenerateManagedDependencyAction;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependency;
 import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
+
+import java.util.Map;
 
 /**
  * 08/09/2019
@@ -18,11 +18,8 @@ import org.jetbrains.idea.maven.dom.model.MavenDomProjectModel;
 public class MavenDependencyVersionUpdateInspection extends
     DomElementsInspection<MavenDomProjectModel> {
 
-
-    public MavenDependencyVersionUpdateInspection(
-        Class<? extends MavenDomProjectModel> domClass,
-        @NotNull Class<? extends MavenDomProjectModel>... additionalClasses) {
-        super(domClass, additionalClasses);
+    public MavenDependencyVersionUpdateInspection() {
+        super(MavenDomProjectModel.class);
     }
 
     @Override
