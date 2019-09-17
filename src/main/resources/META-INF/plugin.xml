@@ -2,7 +2,7 @@
     <id>co.simpleq.mvn-dependency-updater</id>
     <name>Maven Dependency Updater</name>
     <vendor email="ruwankamadhushan@gmail.com" url="https://github.com/ruwanka/mvn-dependnecy-updater">simpleq</vendor>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <description><![CDATA[
     Inspect maven dependency version updates and provide<br>
