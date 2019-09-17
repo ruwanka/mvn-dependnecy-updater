@@ -5,7 +5,7 @@
     <version>0.1-SNAPSHOT</version>
 
     <description><![CDATA[
-    Inspect maven dependency version updates and provide.<br>
+    Inspect maven dependency version updates and provide<br>
     <em>quick fix</em> for latest version
     ]]></description>
 

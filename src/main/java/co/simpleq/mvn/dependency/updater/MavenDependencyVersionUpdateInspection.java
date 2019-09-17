@@ -43,7 +43,7 @@ public class MavenDependencyVersionUpdateInspection extends
                                    String artifactId,
                                    String version) {
 
-        LocalQuickFix fix = new LocalQuickFixBase("Use newer version") {
+        LocalQuickFix fix = new LocalQuickFixBase("Use newer version " + version) {
             @Override
             public void applyFix(@NotNull Project project, @NotNull ProblemDescriptor descriptor) {
 
