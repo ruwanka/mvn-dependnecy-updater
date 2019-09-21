@@ -12,6 +12,7 @@ import com.intellij.util.Processor;
 import com.intellij.util.xml.DomFileElement;
 import com.intellij.util.xml.highlighting.DomElementAnnotationHolder;
 import com.intellij.util.xml.highlighting.DomElementsInspection;
+import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.idea.maven.dom.MavenDomProjectProcessorUtils;
 import org.jetbrains.idea.maven.dom.model.MavenDomDependency;
@@ -86,27 +87,42 @@ public class MavenDependencyVersionUpdateInspection extends
 
         Processor<MavenDomProjectModel> processor = mavenDomProjectModel -> {
             for (MavenDomDependency dependency : dependencies) {
+
                 String groupId = dependency.getGroupId().getStringValue();
                 String artifactId = dependency.getArtifactId().getStringValue();
                 String version = dependency.getVersion().getStringValue();
-                if (domFileElement.getModule() != null) {
+
+                if (domFileElement.getModule() != null && version != null) {
+
                     List<MavenArtifactSearchResult> results = searcher.search(domFileElement.getModule().getProject(),
                             groupId + ":" + artifactId + ":", 1000);
+
                     for (MavenArtifactSearchResult result : results) {
+
+                        result.versions.sort((o1, o2) -> {
+                            String v1 = o1.getVersion();
+                            String v2 = o2.getVersion();
+                            return new ComparableVersion(v2).compareTo(new ComparableVersion(v1));
+                        });
+
                         MavenArtifactInfo mavenArtifactInfo = result.versions.get(0);
                         String latestVersion = mavenArtifactInfo.getVersion();
+
                         if (mavenArtifactInfo.getGroupId().equals(groupId) &&
-                                mavenArtifactInfo.getArtifactId().equals(artifactId) &&
-                                version != null && !version.equals(latestVersion)) {
+                                mavenArtifactInfo.getArtifactId().equals(artifactId) && !version.equals(latestVersion)) {
+
                             System.out.println("latest version of the " +
                                     groupId + ":" + artifactId + " is " + latestVersion);
                             addProblem(dependency, holder, pomModel, groupId, artifactId, latestVersion);
                         }
                     }
+
                 }
+
             }
             return false;
         };
+
         MavenDomProjectProcessorUtils.processChildrenRecursively(pomModel, processor);
         MavenDomProjectProcessorUtils.processParentProjects(pomModel, processor);
     }

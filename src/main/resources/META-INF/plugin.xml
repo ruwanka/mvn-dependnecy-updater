@@ -2,16 +2,17 @@
     <id>co.simpleq.mvn-dependency-updater</id>
     <name>Maven Dependency Updater</name>
     <vendor email="ruwankamadhushan@gmail.com" url="https://github.com/ruwanka/mvn-dependnecy-updater">simpleq</vendor>
-    <version>0.0.1</version>
+    <version>0.0.4</version>
 
     <description><![CDATA[
     Inspect maven dependency version updates and provide<br>
     <em>quick fix</em> for latest version
     ]]></description>
 
-    <idea-version since-build="2018" until-build="2019.2.*"/>
+    <idea-version since-build="183.4284" until-build="192.*"/>
 
     <!-- dependencies -->
+    <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.idea.maven</depends>
 
     <!-- resource bundles -->
@@ -20,13 +21,13 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- inspections -->
         <localInspection
-          shortName="MavenVersionUpdateInspection"
-          displayName="Maven Version Updater"
-          groupName="Maven"
-          enabledByDefault="true"
-          language="XML"
-          level="WARNING"
-          implementationClass="co.simpleq.mvn.dependency.updater.MavenDependencyVersionUpdateInspection"/>
+                shortName="MavenVersionUpdateInspection"
+                displayName="Maven version updater"
+                groupName="Maven"
+                enabledByDefault="true"
+                language="XML"
+                level="WARNING"
+                implementationClass="co.simpleq.mvn.dependency.updater.MavenDependencyVersionUpdateInspection"/>
     </extensions>
 
     <actions>
