@@ -4,9 +4,7 @@ plugins {
 }
 
 group 'co.simpleq'
-version '0.0.5'
-
-sourceCompatibility = 1.8
+version '0.0.6'
 
 repositories {
     mavenCentral()
@@ -22,11 +20,11 @@ dependencies {
 }
 
 intellij {
-    version '2019.3'
-    plugins "maven"
+    version '2020.1'
+    plugins 'maven'
 }
 patchPluginXml {
     changeNotes """
-      0.0.5 Release.<br>
-      <em>intellij idea version 2019.3 support added.</em>"""
+      0.0.6 Release.<br>
+      <em>intellij idea version 2020.1 support added.</em>"""
 }

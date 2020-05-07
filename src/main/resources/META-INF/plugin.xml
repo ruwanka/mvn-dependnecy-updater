@@ -9,7 +9,7 @@
     <em>quick fix</em> for latest version
     ]]></description>
 
-    <idea-version since-build="183.4284" until-build="193.*"/>
+    <idea-version since-build="183.4284" until-build="201.*"/>
 
     <!-- dependencies -->
     <depends>com.intellij.modules.platform</depends>
