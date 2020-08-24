@@ -1,10 +1,10 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.4.10'
+    id 'org.jetbrains.intellij' version '0.4.21'
 }
 
 group 'co.simpleq'
-version '0.0.6'
+version '0.0.7'
 
 repositories {
     mavenCentral()
@@ -20,11 +20,11 @@ dependencies {
 }
 
 intellij {
-    version '2020.1'
+    version '2020.2'
     plugins 'maven'
 }
 patchPluginXml {
     changeNotes """
-      0.0.6 Release.<br>
-      <em>intellij idea version 2020.1 support added.</em>"""
+      0.0.7 Release.<br>
+      <em>intellij idea version 2020.2 support added.</em>"""
 }

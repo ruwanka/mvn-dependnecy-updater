@@ -2,14 +2,14 @@
     <id>co.simpleq.mvn-dependency-updater</id>
     <name>Maven Dependency Updater</name>
     <vendor email="ruwankamadhushan@gmail.com" url="https://github.com/ruwanka/mvn-dependnecy-updater">simpleq</vendor>
-    <version>0.0.5</version>
+    <version>0.0.7</version>
 
     <description><![CDATA[
     Inspect maven dependency version updates and provide<br>
     <em>quick fix</em> for latest version
     ]]></description>
 
-    <idea-version since-build="183.4284" until-build="201.*"/>
+    <idea-version since-build="183.4284" until-build="202.*"/>
 
     <!-- dependencies -->
     <depends>com.intellij.modules.platform</depends>
