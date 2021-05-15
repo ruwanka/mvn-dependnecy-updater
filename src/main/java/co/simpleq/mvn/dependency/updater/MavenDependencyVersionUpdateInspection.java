@@ -1,12 +1,7 @@
 package co.simpleq.mvn.dependency.updater;
 
-import com.intellij.codeInspection.LocalQuickFix;
-import com.intellij.codeInspection.LocalQuickFixBase;
-import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.lang.annotation.HighlightSeverity;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.impl.source.xml.XmlTagImpl;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.util.Processor;
 import com.intellij.util.xml.DomFileElement;
@@ -44,27 +39,13 @@ public class MavenDependencyVersionUpdateInspection extends
                                    String artifactId,
                                    String version) {
 
-        LocalQuickFix fix = new LocalQuickFixBase("Use newer version " + version) {
-            @Override
-            public void applyFix(@NotNull Project project, @NotNull ProblemDescriptor descriptor) {
-
-                if (descriptor.getPsiElement() instanceof XmlTagImpl) {
-                    final XmlTag[] versions = ((XmlTagImpl) descriptor.getPsiElement())
-                            .findSubTags("version");
-                    if (versions.length == 1) {
-                        versions[0].getValue().setText(version);
-                    }
-                }
-            }
-        };
-
         String linkText = createLinkText(model, dependency);
         holder.createProblem(dependency, HighlightSeverity.WARNING,
                 MavenVersionInspectionBundle.message("MavenVersionInspection.has.version.update",
                         linkText,
                         groupId,
                         artifactId,
-                        version), fix);
+                        version), new LatestVersionFix(version));
     }
 
     private static String createLinkText(@NotNull MavenDomProjectModel model, @NotNull MavenDomDependency dependency) {
